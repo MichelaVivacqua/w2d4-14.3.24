@@ -151,5 +151,19 @@ public class Main {
         System.out.println("----------------------------------");
 
 //        ESERCIZIO 5
+        // Raggruppare i prodotti per categoria e calcolare la somma degli importi per ogni categoria
+        Map<String, Double> sommaImportiPerCategoria = productsList.stream()
+                .collect(Collectors.groupingBy(Product::getCategory,
+                        Collectors.summingDouble(Product::getPrice)));
+
+        // Stampare la somma degli importi per ogni categoria
+        sommaImportiPerCategoria.forEach((categoria, sommaImporti) -> {
+            System.out.println("Categoria: " + categoria);
+            System.out.println("Somma degli importi: " + sommaImporti);
+        });
+
+//        Collectors.groupingBy(Product::getCategory, Collectors.summingDouble(Product::getPrice)) viene utilizzato per raggruppare i prodotti per categoria e calcolare la somma degli importi per ogni categoria.
+//                Map<String, Double> indica che la chiave della mappa sarà il nome della categoria e il valore sarà la somma degli importi per quella categoria.
+//        forEach() viene utilizzato per iterare sulla mappa risultante e stampare la somma degli importi per ogni categoria.
     }
 }
