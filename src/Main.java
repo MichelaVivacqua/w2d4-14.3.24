@@ -3,9 +3,7 @@ import entities.Order;
 import entities.Product;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -107,5 +105,40 @@ public class Main {
 //        La mappa risultante è di tipo Map<Customer, Double>, dove la chiave è il cliente e il valore è l'importo totale delle sue vendite.
 //        Infine, utilizziamo un forEach per iterare sulla mappa risultante e stampare i dettagli del cliente e l'importo totale dei suoi acquisti.
 
+        System.out.println("----------------------------------");
+
+//        ESERCIZIO 3
+
+        // Trovo il prodotto più costoso
+        Optional<Product> prodottoPiuCostoso = productsList.stream()
+                .max(Comparator.comparingDouble(Product::getPrice));
+
+        // Verifico se il prodotto più costoso è presente e stampalo
+        prodottoPiuCostoso.ifPresent(prodotto -> {
+            System.out.println("Prodotto più costoso:");
+            System.out.println(prodotto);
+        });
+//        max(Comparator.comparingDouble(Product::getPrice)) viene utilizzato per trovare il massimo tra gli elementi dell'elenco in base al prezzo del prodotto.
+//        Optional<Product> viene utilizzato perché non è garantito che l'elenco dei prodotti sia non vuoto. Quindi, se il prodotto più costoso viene trovato, viene restituito come un oggetto Optional.
+//        ifPresent() viene utilizzato per verificare se il prodotto più costoso è presente e, se presente, stamparlo.
+
+
+        List<Product> prodottiPiuCostosi = productsList.stream()
+                .sorted(Comparator.comparingDouble(Product::getPrice).reversed())
+                .limit(3)
+                .toList();
+
+        // Stampa i tre prodotti più costosi
+        System.out.println("I tre prodotti più costosi:");
+        prodottiPiuCostosi.forEach(System.out::println);
+
+//        sorted(Comparator.comparingDouble(Product::getPrice).reversed()) viene utilizzato per ordinare gli elementi in base al prezzo del prodotto in ordine decrescente.
+//                limit(3) viene utilizzato per limitare il flusso agli elementi dei primi tre prodotti più costosi.
+//        collect(Collectors.toList()) viene utilizzato per raccogliere i risultati in una lista.
+
+        System.out.println("----------------------------------");
+
+//        ESERCIZIO 4
+        
     }
 }
