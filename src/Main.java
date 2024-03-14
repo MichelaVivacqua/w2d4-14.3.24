@@ -139,6 +139,17 @@ public class Main {
         System.out.println("----------------------------------");
 
 //        ESERCIZIO 4
-        
+        // Calcola la media degli importi degli ordini
+        double mediaImporti = orders.stream()
+                .mapToDouble(Order::getTotalAmount) // Converte gli ordini in un flusso di importi totali
+                .average()                          // Calcola la media degli importi
+                .orElse(0);                         // Se non ci sono ordini, la media è 0
+
+        // Stampare la media degli importi degli ordini
+        System.out.println("Media degli importi degli ordini: " + mediaImporti);
+
+        System.out.println("----------------------------------");
+
+//        ESERCIZIO 5
     }
 }
